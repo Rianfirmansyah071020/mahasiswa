@@ -2,16 +2,19 @@ package main
 
 import (
 	"log"
+	"mahasiswa/routes/filestatis"
 	"mahasiswa/routes/web"
 	"net/http"
 )
 
 func main() {
-	// menangani file statis
-	http.Handle("/public/", http.StripPrefix("/public/", http.FileServer(http.Dir("public"))))
+	
+	// menjalankan file statis handle
+	filestatis.Route()
 
 	// route web
 	web.Route()
+
 
 	// menjalankan server
 	log.Println("Server running on port 9999")
