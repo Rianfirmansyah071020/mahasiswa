@@ -42,8 +42,17 @@ func Store(w http.ResponseWriter, r *http.Request) {
 
 	var jeniskelamin entities.Jeniskelamin
 	
-	jeniskelamin.Nama_Jenis_kelamin = r.FormValue("nama_jenis_kelamin")
+	jeniskelamin.Nama_Jenis_Kelamin = r.FormValue("nama_jenis_kelamin")
 	jeniskelamin.CreatedAt = time.Now()
 	jeniskelamin.UpdatedAt = time.Now()
+
+	sukses := jeniskelaminmodel.Store(jeniskelamin)
+
+	if !sukses {
+		http.Redirect(w, r, "/jeniskelamin/create", http.StatusFound)
+	} else {
+		http.Redirect(w, r, "/jeniskelamin/create", http.StatusFound)
+	}
+	
 
 }

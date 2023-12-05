@@ -10,4 +10,5 @@ func Route() {
 	http.HandleFunc("/", homecontroller.Index)
 	http.HandleFunc("/jeniskelamin", jeniskelamincontroller.Index)
 	http.HandleFunc("/jeniskelamin/create", jeniskelamincontroller.Create)
+	http.HandleFunc("/jeniskelamin/store", jeniskelamincontroller.Store)
 }

@@ -35,6 +35,8 @@
       href="https://cdn.datatables.net/1.13.7/css/dataTables.bootstrap5.min.css"
     />
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- sass -->
+    <link rel="stylesheet" href="/public/assets_custom/main.css" />
   </head>
   <body>
     <div class="container-scroller">
@@ -322,10 +324,10 @@
               <div class="container card p-3 table-responsive mt-3">
                 <table
                   id="datatable"
-                  class="table table-striped"
+                  class="table table-striped table-hover table-bordered"
                   style="width: 100%"
                 >
-                  <thead>
+                  <thead class="container-table">
                     <tr>
                       <th class="text-center">No</th>
                       <th class="text-center">Jenis Kelamin</th>
@@ -333,11 +335,11 @@
                     </tr>
                   </thead>
                   <tbody>
-                    {{ range .jeniskelamins }}
+                    {{ $counter := 1}} {{ range .jeniskelamins }}
                     <tr>
-                      <td>1</td>
-                      <td>{{ .Nama_Jenis_kelamin }}</td>
-                      <td>
+                      <td class="text-center">{{ $counter }}</td>
+                      <td class="text-center">{{ .Nama_Jenis_Kelamin }}</td>
+                      <td class="text-center">
                         <a href="/jeniskelamin/edit/1" class="btn btn-primary"
                           ><i class="fa-solid fa-pen-to-square"></i
                         ></a>
