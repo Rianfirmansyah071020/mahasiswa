@@ -2,12 +2,15 @@ package main
 
 import (
 	"log"
+	"mahasiswa/config"
 	"mahasiswa/routes/filestatis"
 	"mahasiswa/routes/web"
 	"net/http"
 )
 
 func main() {
+
+	config.ConnectDB()
 	
 	// menjalankan file statis handle
 	filestatis.Route()

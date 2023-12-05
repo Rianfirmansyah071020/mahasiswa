@@ -34,9 +34,10 @@
       rel="stylesheet"
       href="https://cdn.datatables.net/1.13.7/css/dataTables.bootstrap5.min.css"
     />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <!-- sass -->
-    <link rel="stylesheet" href="/public/sass/main.css" />
+    <link rel="stylesheet" href="/public/assets_custom/main.css" />
   </head>
   <body>
     <div class="container-scroller">
@@ -301,10 +302,14 @@
                   <li class="breadcrumb-item active" aria-current="page">
                     <span></span>
                     <a href="/" class="text-decoration-none">Dashboard</a> /
+                    <a href="/jeniskelamin" class="text-decoration-none"
+                      >Jenis Kelamin</a
+                    >
+                    /
                     <a
                       href="/jeniskelamin"
                       class="text-decoration-none text-secondary"
-                      >Jenis Kelamin</a
+                      >Add Jenis Kelamin</a
                     >
                   </li>
                 </ul>
@@ -319,7 +324,7 @@
             </div>
 
             <div class="row">
-              <div class="container p-3 card card-form">
+              <div class="container p-4 card card-form">
                 <form action="/jeniskelamin/store" method="post">
                   <div class="mb-3">
                     <label for="jeniskelamin" class="form-label"
@@ -330,9 +335,16 @@
                       class="form-control"
                       id="jeniskelamin"
                       name="jeniskelamin"
+                      required
+                      placeholder="masukan jenis kelamin"
                     />
                   </div>
-                  <button type="submit" class="btn btn-primary">Submit</button>
+                  <div class="d-flex justify-content-end gap-3">
+                    <a href="/jeniskelamin" class="btn btn-info">kembali</a>
+                    <button type="submit" class="btn btn-primary">
+                      Simpan
+                    </button>
+                  </div>
                 </form>
               </div>
             </div>
