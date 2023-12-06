@@ -5,6 +5,7 @@ import (
 	"mahasiswa/entities"
 	"mahasiswa/models/jeniskelaminmodel"
 	"net/http"
+	"strconv"
 	"time"
 )
 
@@ -46,13 +47,33 @@ func Store(w http.ResponseWriter, r *http.Request) {
 	jeniskelamin.CreatedAt = time.Now()
 	jeniskelamin.UpdatedAt = time.Now()
 
-	sukses := jeniskelaminmodel.Store(jeniskelamin)
+	sukses := jeniskelaminmodel.Store(jeniskelamin)	
+
 
 	if !sukses {
+		// create message		
 		http.Redirect(w, r, "/jeniskelamin/create", http.StatusFound)
 	} else {
 		http.Redirect(w, r, "/jeniskelamin/create", http.StatusFound)
 	}
 	
 
+}
+
+
+func Delete(w http.ResponseWriter, r *http.Request) { 
+
+	idString := r.URL.Query().Get("id")
+
+	id, err := strconv.Atoi(idString)
+
+	if err != nil {
+		panic(err.Error())
+	}
+
+	if err:= jeniskelaminmodel.Delete(id); err != nil {
+		panic(err.Error())
+	}
+
+	http.Redirect(w, r, "/jeniskelamin", http.StatusFound)
 }

@@ -51,3 +51,14 @@ func Store(jeniskelamin entities.Jeniskelamin) bool {
 
     return true
 }
+
+
+func Delete(id int) error {
+    _,err := config.DB.Exec(`DELETE FROM tb_jenis_kelamin WHERE id_jenis_kelamin = ?`, id)
+    if err != nil {
+        log.Println("Error executing query:", err)
+        return err
+    }
+
+    return nil
+}
