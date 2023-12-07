@@ -77,3 +77,32 @@ func Delete(w http.ResponseWriter, r *http.Request) {
 
 	http.Redirect(w, r, "/jeniskelamin", http.StatusFound)
 }
+
+
+func Edit(w http.ResponseWriter, r *http.Request) {
+	
+	
+
+	idString := r.URL.Query().Get("id")
+
+	id, err := strconv.Atoi(idString)
+
+	if err != nil {
+		panic(err.Error())
+	}
+
+	jeniskelamin := jeniskelaminmodel.Edit(id)	
+
+
+	data := map[string]any{
+		"jeniskelamin": jeniskelamin,
+	}
+
+	temp, err := template.ParseFiles("views/pages/jeniskelamin/edit.html")
+
+	if err != nil {
+		panic(err.Error())
+	}
+
+	temp.Execute(w, data)
+}

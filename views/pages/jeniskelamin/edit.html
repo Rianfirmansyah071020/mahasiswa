@@ -35,6 +35,7 @@
       href="https://cdn.datatables.net/1.13.7/css/dataTables.bootstrap5.min.css"
     />
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     <!-- sass -->
     <link rel="stylesheet" href="/public/assets_custom/main.css" />
   </head>
@@ -301,60 +302,51 @@
                   <li class="breadcrumb-item active" aria-current="page">
                     <span></span>
                     <a href="/" class="text-decoration-none">Dashboard</a> /
-                    <a
-                      href="/jeniskelamin"
-                      class="text-decoration-none text-secondary"
+                    <a href="/jeniskelamin" class="text-decoration-none"
                       >Jenis Kelamin</a
+                    >
+                    /
+                    <a
+                      href="/jeniskelamin/edit?id={{ jeniskelamin.Id_Jenis_Kelamin }}"
+                      class="text-decoration-none text-secondary"
+                      >Edit Jenis Kelamin</a
                     >
                   </li>
                 </ul>
               </nav>
             </div>
-            <div class="mb-2 mt-1">
-              <a href="/jeniskelamin/create" class="btn btn-success"
-                ><i class="fa-solid fa-plus"></i> Add</a
-              >
-            </div>
-            <div class="row mt-3">
+            <div class="row mb-3 mt-4">
               <div class="container card pt-3 pb-2">
                 <p class="text-secondary">
-                  Pada halaman ini terdapat data jenis kelamin
+                  Pada halaman ini untuk menambah data jenis kelamin
                 </p>
               </div>
-              <div class="container card p-3 table-responsive mt-3">
-                <table
-                  id="datatable"
-                  class="table table-striped table-hover table-bordered"
-                  style="width: 100%"
-                >
-                  <thead class="container-table">
-                    <tr>
-                      <th class="text-center">No</th>
-                      <th class="text-center">Jenis Kelamin</th>
-                      <th class="text-center">Action</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {{ $counter := 1}} {{ range .jeniskelamins }}
-                    <tr>
-                      <td class="text-center">{{ $counter }}</td>
-                      <td class="text-center">{{ .Nama_Jenis_Kelamin }}</td>
-                      <td class="text-center">
-                        <a
-                          href="/jeniskelamin/edit?id={{ .Id_Jenis_Kelamin }}"
-                          class="btn btn-primary"
-                          ><i class="fa-solid fa-pen-to-square"></i
-                        ></a>
-                        <a
-                          href="/jeniskelamin/delete?id={{ .Id_Jenis_Kelamin }}"
-                          class="btn btn-danger"
-                          ><i class="fa-solid fa-trash"></i
-                        ></a>
-                      </td>
-                    </tr>
-                    {{ end }}
-                  </tbody>
-                </table>
+            </div>
+
+            <div class="row">
+              <div class="container p-4 card card-form">
+                <form action="/jeniskelamin/update" method="post">
+                  <div class="mb-3">
+                    <label for="nama_jenis_kelamin" class="form-label"
+                      >Jenis Kelamin</label
+                    >
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="nama_jenis_kelamin"
+                      name="nama_jenis_kelamin"
+                      required
+                      placeholder="masukan jenis kelamin"
+                      value="{{ jeniskelamin.Nama_Jenis_Kelamin }}"
+                    />
+                  </div>
+                  <div class="d-flex justify-content-end gap-3">
+                    <a href="/jeniskelamin" class="btn btn-info">kembali</a>
+                    <button type="submit" class="btn btn-primary">
+                      Simpan
+                    </button>
+                  </div>
+                </form>
               </div>
             </div>
           </div>

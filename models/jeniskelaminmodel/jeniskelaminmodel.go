@@ -62,3 +62,20 @@ func Delete(id int) error {
 
     return nil
 }
+
+
+func Edit(id int) entities.Jeniskelamin {
+
+   rows := config.DB.QueryRow(`SELECT id_jenis_kelamin, nama_jenis_kelamin, created_at, updated_at FROM tb_jenis_kelamin WHERE id_jenis_kelamin = ?`, id)
+
+   var jeniskelamin entities.Jeniskelamin
+
+   if err := rows.Scan(&jeniskelamin.Id_Jenis_Kelamin, &jeniskelamin.Nama_Jenis_Kelamin, &jeniskelamin.CreatedAt, &jeniskelamin.UpdatedAt); err != nil {
+       log.Println("Error scanning row:", err)
+       return jeniskelamin
+   }
+
+   return jeniskelamin
+
+
+}
