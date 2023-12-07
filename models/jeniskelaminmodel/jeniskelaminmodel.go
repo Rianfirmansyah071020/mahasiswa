@@ -79,3 +79,17 @@ func Edit(id int) entities.Jeniskelamin {
 
 
 }
+
+
+
+func Update(id int, jeniskelamin entities.Jeniskelamin) bool {
+
+    _, err := config.DB.Exec(`UPDATE tb_jenis_kelamin SET nama_jenis_kelamin = ?, updated_at = ? WHERE id_jenis_kelamin = ?`, jeniskelamin.Nama_Jenis_Kelamin, jeniskelamin.UpdatedAt, id)
+
+    if err != nil {
+        log.Println("Error executing query:", err)
+        return false
+    }
+
+    return true
+}

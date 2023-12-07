@@ -104,3 +104,32 @@ func Edit(w http.ResponseWriter, r *http.Request) {
 
 	temp.Execute(w, data)
 }
+
+
+func Update(w http.ResponseWriter, r *http.Request) {
+
+	idString := r.FormValue("id_jenis_kelamin")
+
+	id, err := strconv.Atoi(idString)
+
+	if err != nil {
+		panic(err.Error())
+	}
+
+	var jeniskelamin entities.Jeniskelamin
+
+	jeniskelamin.Nama_Jenis_Kelamin = r.FormValue("nama_jenis_kelamin")
+	jeniskelamin.UpdatedAt = time.Now()
+
+	sukses := jeniskelaminmodel.Update(id,jeniskelamin)
+
+
+	if !sukses {
+		// create message		
+		http.Redirect(w, r, "/jeniskelamin", http.StatusFound)
+	} else {
+		http.Redirect(w, r, "/jeniskelamin", http.StatusFound)
+	}
+	
+	
+}

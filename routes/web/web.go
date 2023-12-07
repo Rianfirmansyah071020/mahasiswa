@@ -13,4 +13,5 @@ func Route() {
 	http.HandleFunc("/jeniskelamin/store", jeniskelamincontroller.Store)
 	http.HandleFunc("/jeniskelamin/delete", jeniskelamincontroller.Delete)
 	http.HandleFunc("/jeniskelamin/edit", jeniskelamincontroller.Edit)
+	http.HandleFunc("/jeniskelamin/update", jeniskelamincontroller.Update)
 }
